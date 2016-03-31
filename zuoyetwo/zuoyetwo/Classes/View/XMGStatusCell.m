@@ -62,17 +62,29 @@ static NSString * const BaseURL = @"http://api.liyaogang.com/weibo/";
     // 给正文赋值
     self.content_Label.text = status.content;
     // 判断是否有配图
-    if (status.picture) { // 有配图
+    if ([status.picture isEqualToString:@""]) { // 有配图
+        self.pictureHLc.constant = 0;
+        self.pictureBottomLc.constant = 0;
+        
+    } else {
         self.pictureHLc.constant = 100;
         self.pictureBottomLc.constant = 10;
         // 配图URL路径
         NSString *pictureURL = [BaseURL stringByAppendingPathComponent:status.picture];
         
         [self.pictureImageView sd_setImageWithURL:[NSURL URLWithString:pictureURL] placeholderImage:placehoder];
- 
-    } else {
+    }// 判断是否有配图
+    if ([status.picture isEqualToString:@""]) { // 有配图
         self.pictureHLc.constant = 0;
         self.pictureBottomLc.constant = 0;
+        
+    } else {
+        self.pictureHLc.constant = 100;
+        self.pictureBottomLc.constant = 10;
+        // 配图URL路径
+        NSString *pictureURL = [BaseURL stringByAppendingPathComponent:status.picture];
+        
+        [self.pictureImageView sd_setImageWithURL:[NSURL URLWithString:pictureURL] placeholderImage:placehoder];
     }
 }
 
